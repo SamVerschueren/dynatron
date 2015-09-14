@@ -1,24 +1,37 @@
-html,
-body {
+$accent: #ff9900;
+
+$headerHeight: 44px;
+
+// font sizes
+$normal: 14px;
+$large: 18px;
+$xlarge: 24px;
+
+html, body {
 	padding: 0;
 	margin: 0;
+    background-color: #eee;
 }
 
 header {
 	position: absolute;
-	width: 500px;
-	height: 250px;
-	top: 50%;
-	left: 50%;
-	margin-top: -125px;
-	margin-left: -250px;
-	text-align: center;
-}
+	left: 0px;
+    right: 0px;
+    top: 0px;
+    height: $headerHeight;
+    background-color: $accent;
+    background-image: url(../images/dynamodb.svg);
+    background-repeat: no-repeat;
+    background-size: $headerHeight;
 
-header h1 {
-	font-family: 'Helvetica Neue', Helvetica, sans-serif;
-	font-size: 60px;
-	font-weight: 100;
-	margin: 0;
-	padding: 0;
+    h1 {
+        font-family: 'Helvetica Neue', Helvetica, sans-serif;
+        font-size: $xlarge;
+        line-height: $headerHeight;
+        font-weight: 100;
+        letter-spacing: 0.1em;
+        margin: 0px;
+        padding: 0px;
+        margin-left: $headerHeight;
+    }
 }

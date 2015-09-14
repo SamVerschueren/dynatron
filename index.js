@@ -14,12 +14,13 @@ let mainWindow;
 
 function createMainWindow() {
 	const win = new BrowserWindow({
-		width: 600,
-		height: 400,
-		resizable: false
+		width: 800,
+		height: 600,
+		resizable: true
 	});
 
-	win.loadUrl(`file://${__dirname}/dist/index.html`);
+    // win.maximize();
+	win.loadUrl(`file://${__dirname}/src/index.html`);
 	win.on('closed', onClosed);
 
 	return win;

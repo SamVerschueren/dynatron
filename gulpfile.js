@@ -132,11 +132,15 @@ gulp.task('minify', ['clean', 'sass'], function() {
         .pipe(htmlmin({removeComments: true, collapseWhitespace: true}))
         .pipe(gulp.dest('dist'));
 
+    var svg = gulp.src(['assets/images/**/*.svg'], {cwd: 'src'})
+        .pipe(htmlmin({removeComments: true, collapseWhitespace: true}))
+        .pipe(gulp.dest(path.join(dest, 'assets/images')));
+
     var style = gulp.src(['assets/style/app.css', 'assets/style/**/*.css'], {cwd: 'src'})
         .pipe(builder(cssmin, 'style.min.css'))
         .pipe(gulp.dest(path.join(dest, 'assets/style')));
 
-    return merge(index, style);
+    return merge(index, svg, style);
 });
 
 /**
