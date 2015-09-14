@@ -107,7 +107,8 @@ gulp.task('bower', function() {
  */
 gulp.task('uglify', ['clean', 'bower'], function() {
     var libraries = gulp.src([
-            'bower_components/angular/angular.min.js'
+            'bower_components/angular/angular.min.js',
+            'bower_components/angular-route/angular-route.min.js'
         ], {cwd: 'src'})
         .pipe(builder(uglify, 'Libraries.min.js'))
         .pipe(gulp.dest(path.join(dest, 'libs')));
