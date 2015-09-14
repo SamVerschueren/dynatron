@@ -1,2 +1,7 @@
-node_modules
-/dist
+# Directories
+node_modules/
+dist/
+typings/
+
+# Files
+src/**/*.css

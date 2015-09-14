@@ -1,4 +1,5 @@
 'use strict';
+
 const app = require('app');
 const BrowserWindow = require('browser-window');
 
@@ -18,7 +19,7 @@ function createMainWindow() {
 		resizable: false
 	});
 
-	win.loadUrl(`file://${__dirname}/index.html`);
+	win.loadUrl(`file://${__dirname}/dist/index.html`);
 	win.on('closed', onClosed);
 
 	return win;
