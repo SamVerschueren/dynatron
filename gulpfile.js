@@ -10,11 +10,13 @@
 // module dependencies
 var path = require('path'),
     gulp = require('gulp'),
+    bower = require('gulp-bower'),
     header = require('gulp-header'),
     sass = require('gulp-sass'),
     htmlreplace = require('gulp-html-replace'),
     htmlmin = require('gulp-htmlmin'),
     cssmin = require('gulp-minify-css'),
+    uglify = require('gulp-uglify'),
     watch = require('gulp-watch'),
     concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
@@ -93,12 +95,35 @@ gulp.task('sass', function() {
 });
 
 /**
+ * Install the bower components.
+ */
+gulp.task('bower', function() {
+    return bower();
+});
+
+/**
+ * The uglify task uglifies everything that can be uglified. It uglifies all
+ * the controllers, services, models and so on.
+ */
+gulp.task('uglify', ['clean', 'bower'], function() {
+    var libraries = gulp.src([
+            'bower_components/angular/angular.min.js'
+        ], {cwd: 'src'})
+        .pipe(builder(uglify, 'Libraries.min.js'))
+        .pipe(gulp.dest(path.join(dest, 'libs')));
+
+    return merge(libraries);
+});
+
+
+/**
  * The minify task minifies everything that can be minified. It minifies all the
  * html files, the i18n json files, css files and images.
  */
 gulp.task('minify', ['clean', 'sass'], function() {
     var replacements = {
-        'css': ['assets/fonts/fonts.min.css', 'assets/style/style.min.css']
+        'css': ['assets/fonts/fonts.min.css', 'assets/style/style.min.css'],
+        'js': ['libs/Libraries.min.js']
     };
 
     var index = gulp.src('index.html', {cwd: 'src'})
@@ -130,7 +155,7 @@ gulp.task('watch', function() {
 /**
  * Build the entire project.
  */
-gulp.task('build', ['minify']);
+gulp.task('build', ['clean', 'uglify', 'minify']);
 
 /**
  * The default task will run the build task.
