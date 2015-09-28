@@ -28,7 +28,9 @@
   ],
   "dependencies": {
     "aws-sdk": "^2.1.50",
-    "electron-debug": "^0.1.1"
+    "dynongo": "^0.1.0",
+    "electron-debug": "^0.1.1",
+    "got": "^4.2.0"
   },
   "devDependencies": {
     "del": "^2.0.2",
