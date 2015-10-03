@@ -14,41 +14,41 @@ require('electron-debug')();
 let mainWindow;
 
 function createMainWindow() {
-	const win = new BrowserWindow({
-		width: 800,
-		height: 600,
+    const win = new BrowserWindow({
+        width: 800,
+        height: 600,
         resizable: true,
         icon: path.join(__dirname, 'src/assets/images/dynamodb.svg')
-	});
+    });
 
     // win.maximize();
-	win.loadUrl(`file://${__dirname}/index.html`);
+    win.loadUrl(`file://${__dirname}/renderer/index.html`);
     win.on('closed', onClosed);
 
     // Open the DevTools.
     win.openDevTools();
 
-	return win;
+    return win;
 }
 
 function onClosed() {
-	// deref the window
-	// for multiple windows store them in an array
-	mainWindow = null;
+    // deref the window
+    // for multiple windows store them in an array
+    mainWindow = null;
 }
 
 app.on('window-all-closed', function () {
-	if (process.platform !== 'darwin') {
-		app.quit();
-	}
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
 });
 
 app.on('activate-with-no-open-windows', function () {
-	if (!mainWindow) {
-		mainWindow = createMainWindow();
-	}
+    if (!mainWindow) {
+        mainWindow = createMainWindow();
+    }
 });
 
 app.on('ready', function () {
-	mainWindow = createMainWindow();
+    mainWindow = createMainWindow();
 });
